@@ -1,21 +1,245 @@
-MIT License
+# C4D ArchViz Workflow Tools
 
-Copyright (c) 2026 Renaud Deloupy
+A collection of Python utilities for **Cinema 4D**, created to automate repetitive tasks and improve architectural visualization, GIS and scene optimization workflows.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+These tools were originally developed to solve practical production problems encountered in architectural visualization projects.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+The repository currently includes utilities for:
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+- Archicad / Cinema 4D scene optimization
+- Material cleanup and conversion
+- Object and hierarchy management
+- QGIS / DXF / GIS workflows
+- Parcel and topographic workflows
+- D5 Render preparation
+
+---
+
+## Compatibility
+
+Main development and testing environment:
+
+```text
+Cinema 4D 2023.1.2
+Windows
+
+Some scripts may also work with newer or older Cinema 4D versions, but they have not necessarily been tested.
+
+Repository Structure
+C4D-ArchViz-Workflow-Tools/
+│
+├── Archicad_Optimization/
+│
+├── Material_Conversion/
+│
+├── Material_Optimization/
+│
+├── Object_Management/
+│
+├── QGIS_Workflows/
+│
+├── LICENSE
+└── README.md
+
+Each tool has its own folder containing the Python script and, when necessary, specific instructions or an example Cinema 4D scene.
+
+Archicad Optimization
+
+Utilities designed to simplify and optimize Cinema 4D scenes imported from Archicad.
+
+Examples include:
+
+Connecting large numbers of imported objects
+Cleaning imported hierarchies
+Merging duplicate Null objects
+Reducing unnecessary scene complexity
+
+These tools are particularly useful when working with large architectural models containing hundreds or thousands of imported objects.
+
+Material Conversion
+
+Tools for recovering or converting materials from older workflows.
+
+For example:
+
+Legacy V-Ray Advanced Material Converter
+
+Converts legacy V-Ray Advanced Materials from old Cinema 4D scenes into Cinema 4D Standard materials.
+
+This tool was created primarily for recovering archived scenes made with older versions of V-Ray for Cinema 4D.
+
+It is not intended as a converter for current V-Ray versions.
+
+Material Optimization
+
+Utilities for cleaning and simplifying material libraries.
+
+Examples include:
+
+Detecting duplicate Standard materials
+Comparing material channels and texture assignments
+Merging only materials with matching properties
+Updating Texture Tags automatically
+
+These tools can be useful for large architectural scenes where imported models generate many duplicated materials.
+
+Object Management
+
+General Cinema 4D workflow utilities.
+
+Examples include:
+
+Incremental object renaming
+Creating instances from selected objects
+Hierarchy management
+Batch scene organization
+
+These scripts are designed to reduce repetitive manual operations.
+
+QGIS / GIS Workflows
+
+Tools created for workflows involving:
+
+QGIS
+↓
+DXF / GIS Data
+↓
+Cinema 4D
+↓
+D5 Render
+
+This section contains utilities for working with parcel boundaries, cadastral information and topographic data.
+
+Examples include:
+
+Create Random Parcel Sweeps
+
+Creates one Sweep object for every parcel spline using a template Sweep.
+
+Rectangle heights can be randomized between user-defined values.
+
+Useful for:
+
+Parcel boundaries
+Fences
+Curbs
+Urban visualization
+Landscape visualization
+Fix Parcel Spline Direction
+
+Analyses closed parcel splines and ensures that their point direction is consistent.
+
+This can be important when generating surfaces that will later be used as scatter zones.
+
+One practical use case is preparing parcel surfaces for D5 Render Scatter, where inconsistent surface normals can cause vegetation to be generated in the wrong direction.
+
+The script preserves the original X / Y / Z coordinates and only changes the point order when necessary.
+
+Create Parcel Lofts
+
+Creates one Loft object per parcel spline using a template Loft object.
+
+This makes it possible to quickly transform large GIS parcel datasets into individual Cinema 4D surfaces.
+
+These surfaces can then be used for:
+
+Scatter zones
+Vegetation distribution
+Landscape studies
+Urban planning visualization
+Installation / Usage
+
+These tools are standard Cinema 4D Python scripts.
+
+They are not standalone applications.
+
+A typical workflow is:
+
+Download the desired .py script.
+Open Cinema 4D.
+Open the Cinema 4D Script Manager.
+Load or paste the Python script.
+Prepare the scene according to the instructions in the tool's README.
+Run the script.
+
+Some scripts require objects to be selected in a specific order.
+
+Always read the README included with the tool before running it.
+
+Example Scenes
+
+Some tools include small Cinema 4D example scenes.
+
+These scenes contain only simple geometry and are intended to demonstrate the expected hierarchy and workflow.
+
+Example:
+
+PARCEL_SPLINES
+├── Parcel_001
+├── Parcel_002
+├── Parcel_003
+└── Parcel_004
+
+SWEEP_TEMPLATE
+└── Rectangle
+
+Example files are intentionally kept lightweight and independent from production projects.
+
+Production Safety
+
+Many scripts perform batch operations on objects, materials or hierarchies.
+
+Before running a script on an important production scene:
+
+Save your project first.
+
+For large or critical scenes, it is recommended to test the script on a copy of the file.
+
+Where possible, scripts include Cinema 4D Undo support, but saving the scene beforehand is still strongly recommended.
+
+Why this repository exists
+
+Architectural visualization projects often involve repetitive operations that are difficult or time-consuming to perform manually.
+
+Typical examples include:
+
+Cleaning large Archicad imports
+Processing hundreds of GIS parcel splines
+Fixing inconsistent imported geometry
+Managing duplicated materials
+Preparing geometry for D5 Render
+Reorganizing complex Cinema 4D scenes
+
+The goal of this repository is to turn these recurring production tasks into small, reusable tools.
+
+Development
+
+These tools are developed from real production workflow needs.
+
+The scripts are created, tested and adjusted directly inside Cinema 4D, with AI-assisted development used as part of the scripting process.
+
+The focus of the repository is not software engineering experimentation, but practical tools that can save time in architectural visualization workflows.
+
+Contributions and Feedback
+
+If you find a bug, have an improvement idea or use one of these tools in a different workflow, feel free to open an Issue.
+
+Because Cinema 4D APIs can change between versions, mentioning your Cinema 4D version when reporting an issue is helpful.
+
+Disclaimer
+
+These scripts are provided as workflow utilities and may not cover every possible Cinema 4D scene configuration.
+
+Always verify the result before using modified geometry or materials in production.
+
+License
+
+This project is licensed under the MIT License.
+
+See the LICENSE file for details.
+
+Author
+
+Renaud Deloupy
+
+Architectural visualization / 3D workflow tools.
